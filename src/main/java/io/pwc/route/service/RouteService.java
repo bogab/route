@@ -58,11 +58,11 @@ public class RouteService {
         queue.add(origin);
 
         while (queue.size() != 0 && !routeFound) {
-            origin = queue.poll();
-            for (String node : graph.adjacentNodes(origin)) {
+            String parent = queue.poll();
+            for (String node : graph.adjacentNodes(parent)) {
                 if (visited.add(node)) {
                     queue.add(node);
-                    parentNodes.put(node, origin);
+                    parentNodes.put(node, parent);
                 }
                 if (destination.equals(node)) {
                     routeFound = true;
